@@ -6,6 +6,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE
 RUN apk update
 RUN apk add curl
 RUN apk add vim
+RUN apk add tree
 RUN apk add busybox
 RUN apk add leafpad
 RUN apk add leafpad-lang

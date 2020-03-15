@@ -1,13 +1,13 @@
 #!/bin/bash
 set -x
-declare -r aports=$(cd ../aports && pwd );
-if [[ ! -d ${aports} ]] ; then
-mkdir "${aports}"
+declare -r parent_folder=$(dirname "$(pwd)");
+declare -r aports=${parent_folder}/aports;
+
+if [[ ! -d "${aports}" ]] ; then
+  mkdir "${aports}";
 fi
 
-#declare -r aports=/home/ulf/projects/apk/dockerAlpineBuildPackage/aports
 docker run --rm -dit --env DISPLAY=":0" \
 --mount type=bind,src=${aports},dst=/home/dev/aports,bind-propagation=shared \
---mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix --name alpine-build alpine-build:latest
-#docker run --rm -dit --env DISPLAY=":0" --mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix --name alpine-build alpine-build:latest
+--mount type=bind,src=/tmp/.X11-unix,dst=/tmp/.X11-unix --name apk-build apk-build:latest
 

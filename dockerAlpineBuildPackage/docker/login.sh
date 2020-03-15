@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it alpine-build /bin/ash
+docker exec -it apk-build /bin/ash
