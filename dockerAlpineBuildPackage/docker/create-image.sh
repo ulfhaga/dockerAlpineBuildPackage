@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Build docker image
 today=$(date --iso-8601)

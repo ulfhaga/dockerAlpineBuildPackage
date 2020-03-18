@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 read -p "Enter the new AKP package name : " package_name
 # Create package
 ./run-docker

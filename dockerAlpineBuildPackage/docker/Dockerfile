@@ -12,6 +12,7 @@ RUN apk add leafpad
 RUN apk add leafpad-lang
 RUN apk add alpine-sdk
 RUN apk --update add ttf-ubuntu-font-family
+RUN apk update
 
 
 # Update file /etc/abuild.conf
@@ -31,6 +32,8 @@ RUN chmod a+w /var/cache/distfiles
 
 # RUN mkdir /home/dev/aport
 # RUN ln -s /home/dev/aports /home/dev/aport
+
+
 
 WORKDIR /home/dev
 USER dev
