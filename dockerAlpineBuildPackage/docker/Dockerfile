@@ -28,12 +28,11 @@ RUN echo "dev ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && chmod 0440 /etc/
 RUN addgroup dev abuild
 
 RUN mkdir -p /var/cache/distfiles
-RUN chmod a+w /var/cache/distfiles
-
+#RUN chmod a+w /var/cache/distfiles
+RUN chgrp abuild /var/cache/distfiles
+RUN chmod g+w /var/cache/distfiles
 # RUN mkdir /home/dev/aport
 # RUN ln -s /home/dev/aports /home/dev/aport
-
-
 
 WORKDIR /home/dev
 USER dev
@@ -41,7 +40,7 @@ USER dev
 RUN git config --global user.name "dev" 
 RUN git config --global user.email "dev@email.address" 
 RUN git clone git://git.alpinelinux.org/aports
-RUN abuild-keygen -n
-
+# RUN abuild-keygen -n
+RUN abuild-keygen -a -i
 ENTRYPOINT ["/bin/ash", "-c", "sleep 10000"]
 
