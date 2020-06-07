@@ -58,16 +58,18 @@ echo "" >> "${APKBUILD_FILE}"
 
 
 # Create tarball
-tarball_directory="${package_name}"-"${pkg_version}"
+tar_ball_root_dir="${package_name}"-"${pkg_version}"
+tarball_directory="${PARENT_FOLDER}"/source/"${tar_ball_root_dir}"
 tarball="${tarball_directory}".tar.gz
 
-if [[ -f "${tarball}" ]]; then
-  tar -cvzf "${tarball}" -C ../source "${tarball_directory}"
-  cp "${tarball}" "${A_PORTS}"/"${package_name}"
-else
+if [[ -f "${tarball_directory}" ]]; then
   printf "ERROR: The files for creating a tarball %s is missing. \n " "${tarball}"
   printf "Use the script ../source/create-source.sh to create one.\n"
   exit 1;
+else
+  set -x
+  tar -cvzf "${tarball}" -C "${PARENT_FOLDER}"/source "${tar_ball_root_dir}"
+  mv "${tarball}" "${A_PORTS}"/"${package_name}"
 fi
 
 docker exec -t -w /home/dev/aports/"${package_name}" apk-build abuild checksum
