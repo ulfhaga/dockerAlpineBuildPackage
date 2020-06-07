@@ -1,1 +1,1 @@
-docker stop apk-build 
+docker stop apk-build

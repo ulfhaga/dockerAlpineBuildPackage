@@ -1,0 +1,4 @@
+check() {
+	# Replace with proper check command(s)
+	cd "${builddir}";
+}

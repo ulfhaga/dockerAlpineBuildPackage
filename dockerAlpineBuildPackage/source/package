@@ -1,0 +1,8 @@
+package() {
+    # Replace with proper package command(s)
+    mkdir -p "${pkgdir}";
+	cd "${builddir}";
+
+	mkdir -p "${pkgdir}"/tmp;
+   	echo 'echo "Hello world!' > "${pkgdir}"/tmp/hello.sh
+}
