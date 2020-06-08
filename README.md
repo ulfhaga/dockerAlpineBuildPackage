@@ -1,5 +1,8 @@
-# dockerAlpineBuildPackage
+# TOOLS TO CREATE ALPINE PACKAGE
 
-Under developing!
+## Overview
+Bash scripts and Docker are used to create an Alpine package. 
 
-Creating an Alpine package by Docker
+## How to do
+
+
