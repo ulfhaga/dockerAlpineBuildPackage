@@ -1,4 +1,5 @@
 build() {
 	# Replace with proper build command(s)
 	cd "${builddir}";
+	mkdir -p "${pkgdir}";
 }
