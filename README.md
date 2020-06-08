@@ -31,6 +31,8 @@ Add the file hello.sh.
 ### Create package
 
     docker/create_new_package.sh 
+    
+Enter the name mypackage    
 
 The package is found in folder target.
 

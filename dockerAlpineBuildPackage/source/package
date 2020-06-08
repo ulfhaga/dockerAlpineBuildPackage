@@ -1,6 +1,5 @@
 package() {
     # Replace with proper package command(s)
-
 	cd "${builddir}";
-install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh
+
 }

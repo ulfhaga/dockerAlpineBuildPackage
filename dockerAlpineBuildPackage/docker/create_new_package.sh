@@ -21,15 +21,21 @@ main() {
   read_package_name
   ./stop_docker_container.sh
   ./run_docker_container.sh
-  docker exec -t -w /home/dev/aports apk-build newapkbuild "${package_name}"
-  update_file_apk_build
+  build_apk_file
+  update_apk_build_file
   create_tarball
-
-  docker exec -t -w /home/dev/aports/"${package_name}" apk-build abuild checksum
-  docker exec -t -w /home/dev/aports/"${package_name}" apk-build abuild -r
-
+  build_apk_package
   printf "The package can be found in folder %s\n" "${PACKAGES}"
   # ./stop_docker_container.sh
+}
+
+build_apk_file() {
+  docker exec -t -w /home/dev/aports apk-build newapkbuild "${package_name}"
+}
+
+build_apk_package() {
+  docker exec -t -w /home/dev/aports/"${package_name}" apk-build abuild checksum
+  docker exec -t -w /home/dev/aports/"${package_name}" apk-build abuild -r
 }
 
 create_tarball() {
@@ -59,7 +65,7 @@ read_package_name() {
   fi
 }
 
-function update_file_apk_build() {
+function update_apk_build_file() {
   # Update file APKBUILD
   APKBUILD_FILE="${A_PORTS}"/"${package_name}"/APKBUILD
 
