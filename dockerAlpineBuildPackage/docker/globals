@@ -1,0 +1,6 @@
+#!/bin/bash
+pkg_version=1.0
+pkg_desc="Mydescription"
+url="http:\/\/www.github.com"
+arch="noarch"
+license="LGPL-2.1-or-later"
