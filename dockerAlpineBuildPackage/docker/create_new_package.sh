@@ -14,8 +14,9 @@ cd "${C_DIR}" || exit 1
 declare -r PARENT_FOLDER=$(dirname "$(pwd)")
 declare -r A_PORTS="${PARENT_FOLDER}"/target/aports
 declare -r PACKAGES="${PARENT_FOLDER}"/target/packages
-
 declare -g package_name
+
+source globals
 
 main() {
   read_package_name
@@ -26,7 +27,7 @@ main() {
   create_tarball
   build_apk_package
   printf "The package can be found in folder %s\n" "${PACKAGES}"
-  # ./stop_docker_container.sh
+  ./stop_docker_container.sh
 }
 
 build_apk_file() {
@@ -69,29 +70,16 @@ function update_apk_build_file() {
   # Update file APKBUILD
   APKBUILD_FILE="${A_PORTS}"/"${package_name}"/APKBUILD
 
-  pkg_version=1.0
+
   sed -i -e "s/pkgver=\"\"/pkgver=\""${pkg_version}"\"/" "${APKBUILD_FILE}"
-
   sed -i -e 's/source=\"\"/source=\"$pkgname-$pkgver.tar.gz\"/' "${APKBUILD_FILE}"
-
-  pkg_desc="Mydescription"
   sed -i -e "s/pkgdesc=\".*\"/pkgdesc=\""${pkg_desc}"\"/" "${APKBUILD_FILE}"
-
-  url="http:\/\/www.github.com"
   sed -i -e "s/url=\".*\"/url=\""${url}"\"/" "${APKBUILD_FILE}"
-
-  arch="noarch"
   sed -i -e "s/arch=\".*\"/arch=\""${arch}"\"/" "${APKBUILD_FILE}"
-
-  license="LGPL-2.1-or-later"
   sed -i -e "s/license=\".*\"/license=\""${license}"\"/" "${APKBUILD_FILE}"
 
   sed -i -e "s/license=\".*\"/license=\""${license}"\"/" "${APKBUILD_FILE}"
   sed -i -e "s/subpackages=\".*\"/subpackages=\"\"/" "${APKBUILD_FILE}"
-
-  # function_package="cd \"$builddir\"; mkdir -p $pkgdir;";
-
-  #sed -i -e "s/^package.*/&\n cd \"\$builddir\"; mkdir -p \$pkgdir;/" "${APKBUILD_FILE}"
 
   sed -i -e '/^build.*/,$d' "${APKBUILD_FILE}"
   echo "" >>"${APKBUILD_FILE}"

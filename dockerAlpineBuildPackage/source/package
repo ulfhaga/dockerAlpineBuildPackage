@@ -1,5 +1,6 @@
 package() {
     # Replace with proper package command(s)
 	cd "${builddir}";
+	mkdir -p "${pkgdir}";
 
 }

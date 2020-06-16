@@ -14,6 +14,8 @@ https://docs.docker.com/engine/install/
 Create first a docker image
     
     docker/create_image.sh 
+
+To change package version number e.g. edit file source/globals. 
     
 ### Create a directory with file(s)
 
@@ -45,7 +47,6 @@ In an Alpine Linux distribution run
     sudo apk add mypackage-1.0-r0.apk;
     # Test by typeing 
     hello.sh
-
 
 
 ## References
