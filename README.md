@@ -12,31 +12,32 @@ https://docs.docker.com/engine/install/
 ### Initialize
 
 Create first a docker image
-    
-    docker/create_image.sh 
+
+    cd dockerAlpineBuildPackage;
+    docker/create_image.sh; 
 
 To change package version number e.g. edit file source/globals. 
     
 ### Create a directory with file(s)
 
 Assume that the Alpine package will have the name 'mypackage' and the version is 1.0.
-In this simple example there is only one file with the name hello.sh.
+In this simple example there is only one file with the name hello.sh that will be in the package.
 
-    mkdir source/mypackage-1.0
-    echo 'echo Hello world!'  > source/mypackage-1.0/hello.sh
+    mkdir source/mypackage-1.0;
+    echo 'echo Hello world!'  > source/mypackage-1.0/hello.sh;
  
-### Add instruction in install scripts source/package    
+### Add instructions in install scripts source/package    
 
 With this example we add the code: 
 
 install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh
 in function package()
     
-    sed -i -e '/^}/i install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh' source/package
+    sed -i -e '/^}/i install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh' source/package;
 
 ### Create package
 
-    docker/create_new_package.sh 
+    docker/create_new_package.sh; 
     
 Enter the name mypackage    
 
@@ -48,6 +49,9 @@ In an Alpine Linux distribution run
     # Test by typeing 
     hello.sh
 
+## Configuration
+
+Configuration can be done by change the parameters in folder docker/globals.  
 
 ## References
 
