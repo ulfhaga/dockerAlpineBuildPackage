@@ -2,6 +2,7 @@
 
 ## Overview
 [Bash](https://www.gnu.org/software/bash/) scripts and [Docker](https://www.docker.com/) are used to create an [Alpine](https://alpinelinux.org/) package. 
+Any files can be added to the package.
 
 ## Requirements
 
@@ -28,10 +29,10 @@ In this simple example there is only one file with the name hello.sh that will b
  
 ### Add instructions in install scripts source/package    
 
-With this example we add the code: 
+With this example we add the script: 
 
 install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh
-in function package()
+in function package(). The folder /usr/bin will contain the file hello.sh.
     
     sed -i -e '/^}/i install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh' source/package;
 
