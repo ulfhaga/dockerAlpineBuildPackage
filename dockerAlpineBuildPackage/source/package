@@ -3,4 +3,5 @@ package() {
 	cd "${builddir}";
 	mkdir -p "${pkgdir}";
 
+install -Dm755 hello.sh "$pkgdir"/usr/bin/hello.sh
 }
