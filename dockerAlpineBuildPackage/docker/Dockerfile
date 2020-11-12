@@ -40,7 +40,7 @@ USER dev
 RUN git config --global user.name "dev" 
 RUN git config --global user.email "dev@email.address" 
 RUN git clone git://git.alpinelinux.org/aports
-# RUN abuild-keygen -n
-RUN abuild-keygen -a -i
+RUN abuild-keygen -n
+# RUN abuild-keygen -a -i
 ENTRYPOINT ["/bin/ash", "-c", "sleep 10000"]
 
